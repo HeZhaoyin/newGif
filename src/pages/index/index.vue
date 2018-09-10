@@ -1,10 +1,12 @@
 <template>
   <div class="container">
+    <div class="search-box">
+      <input type="text" class="search-input" name="" @input="keywordChange" v-model="keyword" placeholder="输入关键词搜索">
+    </div>
     <div class="category-list-box">
       <card ref="category" v-for="category in categoryList" :key="category.tplid" :text="category.name" :imgSrc="category.thumbnail"></card>
       <div class="empty-category" v-if="categoryList.length % 2 !== 0"></div>
     </div>
-    <a href="/pages/counter/main" class="counter">去往Vuex示例页面</a>
   </div>
 </template>
 
@@ -14,7 +16,8 @@ import card from '@/components/card'
 export default {
   data () {
     return {
-      categoryList: []
+      categoryList: [],
+      keyword: ''
     }
   },
 
@@ -27,8 +30,7 @@ export default {
       const url = '../logs/main'
       wx.navigateTo({ url })
     },
-    getUserInfo () {
-      // 调用登录接口
+    getData () {
       wx.request({
         url: 'https://www.hezhaoyin.com/gif/category',
         method: 'GET',
@@ -39,12 +41,15 @@ export default {
     },
     clickHandle (msg, ev) {
       console.log('clickHandle:', msg, ev)
+    },
+    keywordChange () {
+      console.log(this.keyword)
     }
   },
 
   created () {
     // 调用应用实例的方法获取全局数据
-    this.getUserInfo()
+    this.getData()
   }
 }
 </script>
@@ -60,5 +65,20 @@ export default {
 }
 .empty-category{
   width: 50%;
+}
+
+.search-box{
+  width: 100%;
+}
+
+.search-input{
+  width: 90%;
+  margin: 0 auto;
+  height: 50rpx;
+  border-radius: 25rpx;
+  border: 1rpx solid gray;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
 }
 </style>

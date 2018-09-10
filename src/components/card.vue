@@ -1,5 +1,5 @@
 <template>
-  <div class="card" @click="goDetail" :class="isOpen ? 'cardopen' : ''">
+  <div class="card" @click="goDetail">
     <div class="box">
       <img mode="widthFix" class="img-thum" v-if="imgSrc" :src="imgSrc" alt="">
       <p class="card-title">{{text}}</p>
@@ -12,7 +12,6 @@ export default {
   props: ['text', 'imgSrc'],
   data () {
     return {
-      isOpen: false
     }
   },
   methods: {
@@ -48,27 +47,4 @@ export default {
   height: 120rpx;
   font-size: 26rpx;
 }
-
-.cardopen{
-  color: red;
-  position: absolute;
-  width: 50vw;
-  transform: translate(-50%,-50%);
-  animation: openCard .5s linear forwards;
-}
-
-@keyframes openCard {
-  0%{
-    width: 50vw;
-  }
-  100%{
-    top: 0;
-    left: 0;
-    transform: translate(0,0);
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-  }
-}
-
 </style>
