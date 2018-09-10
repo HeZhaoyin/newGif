@@ -1,6 +1,5 @@
-# my-project
-
-> A Mpvue project
+# new-gif
+> 正在使用mpvue重构《真香GIF》小程序
 
 ## Build Setup
 
