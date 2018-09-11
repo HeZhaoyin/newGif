@@ -9,15 +9,17 @@
 
 <script>
 export default {
-  props: ['text', 'imgSrc'],
+  props: ['text', 'imgSrc', 'category'],
   data () {
     return {
     }
   },
   methods: {
     goDetail ($event) {
-      console.log($event)
+      console.log(this.category)
       this.isOpen = true
+      const url = '../make/main'
+      wx.navigateTo({ url })
     }
   }
 }

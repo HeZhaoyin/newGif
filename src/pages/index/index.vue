@@ -4,7 +4,7 @@
       <input type="text" class="search-input" name="" @input="keywordChange" v-model="keyword" placeholder="输入关键词搜索">
     </div>
     <div class="category-list-box">
-      <card ref="category" v-for="category in categoryList" :key="category.tplid" :text="category.name" :imgSrc="category.thumbnail"></card>
+      <card :category="category" ref="category" v-for="category in categoryList" :key="category.tplid" :text="category.name" :imgSrc="category.thumbnail"></card>
       <div class="empty-category" v-if="categoryList.length % 2 !== 0"></div>
     </div>
   </div>
@@ -12,6 +12,7 @@
 
 <script>
 import card from '@/components/card'
+import store from '@/store/store'
 
 export default {
   data () {
@@ -36,6 +37,8 @@ export default {
         method: 'GET',
         success: (res) => {
           this.categoryList = res.data.d
+          store.commit('setCategoryList', this.categoryList)
+          console.log(this.categoryList)
         }
       })
     },
