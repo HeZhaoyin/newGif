@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import store from '@/store/store'
+
 export default {
   props: ['text', 'imgSrc', 'category'],
   data () {
@@ -15,10 +17,10 @@ export default {
     }
   },
   methods: {
-    goDetail ($event) {
-      console.log(this.category)
+    goDetail () {
       this.isOpen = true
       const url = '../make/main'
+      store.commit('setNowCategory', this.category)
       wx.navigateTo({ url })
     }
   }

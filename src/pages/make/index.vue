@@ -1,19 +1,23 @@
 <template>
-  <div class="counter-warp">
-    <p>Vuex counter：{{ count }}</p>
-    <p>
-      <button @click="increment">+</button>
-      <button @click="decrement">-</button>
-    </p>
-
-    <a href="/pages/index/main" class="home">去往首页</a>
+<div>
+  <div>
+    {{ category }}
   </div>
+</div>
 </template>
 
 <script>
-// Use Vuex
+import store from '@/store/store'
 
 export default {
+  mounted () {
+    console.log(store.state.nowCategory)
+  },
+  computed: {
+    category: function () {
+      return JSON.stringify(store.state.nowCategory)
+    }
+  },
   methods: {
 
   }
@@ -25,6 +29,7 @@ export default {
   text-align: center;
   margin-top: 100px;
 }
+
 .home {
   display: inline-block;
   margin: 100px auto;

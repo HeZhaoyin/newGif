@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="search-box">
-      <input type="text" class="search-input" name="" @input="keywordChange" v-model="keyword" placeholder="输入关键词搜索">
+      <input type="text" class="search-input" name="" @input="keywordChange" v-model="keyword" placeholder="输入关键词搜索(暂未启用)">
     </div>
     <div class="category-list-box">
       <card :category="category" ref="category" v-for="category in categoryList" :key="category.tplid" :text="category.name" :imgSrc="category.thumbnail"></card>
@@ -41,9 +41,6 @@ export default {
           console.log(this.categoryList)
         }
       })
-    },
-    clickHandle (msg, ev) {
-      console.log('clickHandle:', msg, ev)
     },
     keywordChange () {
       console.log(this.keyword)

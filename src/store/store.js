@@ -7,11 +7,15 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    categoryList: []
+    categoryList: [],
+    nowCategory: {}
   },
   mutations: {
     setCategoryList: (state, categoryList) => {
       state.categoryList = categoryList
+    },
+    setNowCategory: (state, nowCategory) => {
+      state.nowCategory = nowCategory
     }
   }
 })
