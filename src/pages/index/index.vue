@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <gif-swiper></gif-swiper>
     <div class="search-box">
       <input type="text" class="search-input" name="" @input="keywordChange" v-model="keyword" placeholder="输入关键词搜索(暂未启用)">
     </div>
@@ -13,6 +14,7 @@
 <script>
 import card from '@/components/card'
 import store from '@/store/store'
+import gifSwiper from '@/components/gifSwiper'
 
 export default {
   data () {
@@ -23,7 +25,8 @@ export default {
   },
 
   components: {
-    card
+    card,
+    gifSwiper
   },
 
   methods: {
