@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <gif-swiper></gif-swiper>
+    <gif-swiper :imgUrls="hotGifUrlArr"></gif-swiper>
     <div class="search-box">
       <input type="text" class="search-input" name="" @input="keywordChange" v-model="keyword" placeholder="输入关键词搜索(暂未启用)">
     </div>
@@ -20,7 +20,13 @@ export default {
   data () {
     return {
       categoryList: [],
-      keyword: ''
+      keyword: '',
+      hotGifUrlArr: [
+        'https://www.hezhaoyin.com/demo/thumbnail/1.jpg',
+        'https://www.hezhaoyin.com/demo/thumbnail/2.jpg',
+        'https://www.hezhaoyin.com/demo/thumbnail/3.png',
+        'https://www.hezhaoyin.com/demo/thumbnail/4.png'
+      ]
     }
   },
 
