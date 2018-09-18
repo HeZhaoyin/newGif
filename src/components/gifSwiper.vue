@@ -1,9 +1,9 @@
 <template>
   <div class="main">
-    <swiper class="swiper-main" :previous-margin="'60rpx'" :next-margin="'60rpx'" :circular="true" >
-      <div v-for="img in imgUrls" :key="img">
+    <swiper :autoplay="true"  class="swiper-main" :previous-margin="'60rpx'" :next-margin="'60rpx'" :circular="true" @change="swiperChange">
+      <div v-for="(img, index) in imgUrls" :key="img">
         <swiper-item>
-          <img :src="img" alt="" class="swiper-image">
+          <img :src="img" alt="" class="swiper-image" :style="{ transform: index!==bannerIndex?'scale(0.9, 0.9)':'scale(1,1)'}">
         </swiper-item>
       </div>
     </swiper>
@@ -12,13 +12,17 @@
 
 <script>
 export default {
+  props: {
+    imgUrls: Array
+  },
   data () {
     return {
-      imgUrls: [
-        'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-        'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
-      ]
+      bannerIndex: 0
+    }
+  },
+  methods: {
+    swiperChange: function (e) {
+      this.bannerIndex = e.mp.detail.current
     }
   }
 }
@@ -35,8 +39,10 @@ export default {
 }
 
 .swiper-image {
-  width: 97%;
+  width: 100%;
   height: 100%;
+  transition: all .3s linear;
+  display: block;
 }
 </style>
 

@@ -3,7 +3,7 @@
   <div>
     {{ category }}
   </div>
-  <input class="content-input" v-for="(content, index) in contentArr" :placeholder="content" placeholder-class="content-input-placeholder" type="text" name="" v-model="materialArr[index]">
+  <input class="content-input" v-for="(content, index) in contentArr" :key="index" :placeholder="content" placeholder-class="content-input-placeholder" type="text" name="" v-model="materialArr[index]">
 </div>
 </template>
 
