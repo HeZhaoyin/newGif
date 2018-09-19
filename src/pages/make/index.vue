@@ -1,9 +1,14 @@
 <template>
 <div>
   <div>
-    {{ category }}
+    <img mode="widthFix" class="demo-img" :src="category.gifDemoUrl" alt="">
   </div>
   <input class="content-input" v-for="(content, index) in contentArr" :key="index" :placeholder="content" placeholder-class="content-input-placeholder" type="text" name="" v-model="materialArr[index]">
+  <button type="primary" class="confirm-btn" @click="makeGif">生成</button>
+
+  <modal confirm-text="保存" cancel-text="取消" title="退出应用" :hidden="hiddenModal" @confirm="modalConfirm" @cancel="modalCancel">
+    <img :src="modalImgUrl" alt="">
+  </modal>
 </div>
 </template>
 
@@ -15,7 +20,9 @@ export default {
     return {
       category: {},
       contentArr: [],
-      materialArr: []
+      materialArr: [],
+      hiddenModal: true,
+      modalImgUrl: ''
     }
   },
   mounted () {
@@ -25,22 +32,74 @@ export default {
     console.log(this.contentArr)
   },
   methods: {
+    makeGif: function () {
+      wx.request({
+        url: 'https://www.hezhaoyin.com/gif/make',
+        method: 'POST',
+        data: {
+          from: 1,
+          tplid: this.category.tplid,
+          quality: 1,
+          content: this.materialArr.join('##$@?$?@$##')
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success: (res) => {
+          wx.hideLoading()
+          if (res.data.m === 0) {
+            console.log(res)
+            // wx.previewImage({
+            //   urls: [res.data.d.gifurl]
+            // })
+            console.log(res.data.d.gifurl)
+            this.modalImgUrl = res.data.d.gifurl
+            this.hiddenModal = false
+          } else {
+            wx.showToast({
+              title: '服务器暂时很忙哟, 等等再试吧',
+              icon: 'none'
+            })
+          }
+        },
+        fail: function () {
+          wx.hideLoading()
+          wx.showToast({ title: '服务器暂时很忙哟, 等等再试吧', icon: 'none' })
+        }
+      })
+    },
+    modalCancel: function () {
+      this.hiddenModal = true
+    },
+    modalConfirm: function () {
 
+    }
   }
 }
 </script>
 
 <style>
-.content-input{
+.demo-img {
+  width: 100%;
+}
+
+.content-input {
   box-sizing: border-box;
   padding: 5rpx 10rpx;
   width: 90%;
-  border: 1px solid #e5e5e5;
+  height: 60rpx;
+  line-height: 60rpx;
+  border: 1px solid #969696;
   margin: 20rpx auto;
-  font-size: 14px;
+  font-size: 26rpx;
+  border-radius: 10px;
 }
 
-.content-input-placeholder{
+.content-input-placeholder {
   color: #ccc;
+}
+
+.confirm-btn {
+  width: 60%;
 }
 </style>

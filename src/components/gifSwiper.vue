@@ -60,7 +60,7 @@ export default {
   bottom: 0;
   left: 0;
   background: rgba(255,255,255,0.7);
-  color: #fff;
+  color: #000;
   text-align: center;
   font-weight: bold;
   line-height: 70rpx;
