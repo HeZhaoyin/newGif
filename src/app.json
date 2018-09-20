@@ -8,5 +8,24 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "真香GIF",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#1296db",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [{
+        "pagePath": "pages/index/main",
+        "iconPath": "static/images/icon/home.png",
+        "selectedIconPath": "static/images/icon/home_selected.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/index/main",
+        "iconPath": "static/images/icon/home.png",
+        "selectedIconPath": "static/images/icon/home_selected.png",
+        "text": "关于"
+      }
+    ]
   }
 }
