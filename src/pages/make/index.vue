@@ -5,8 +5,13 @@
   </div>
   <input class="content-input" v-for="(content, index) in contentArr" :key="index" :placeholder="content" placeholder-class="content-input-placeholder" type="text" name="" v-model="materialArr[index]">
   <button type="primary" class="confirm-btn" @click="makeGif">生成</button>
-  <modal confirm-text="保存" cancel-text="取消" title="退出应用" :hidden="hiddenModal" @confirm="modalConfirm" @cancel="modalCancel">
-    <img mode="widthFix" :src="modalImgUrl" alt="">
+  <modal cancel-text="取消" title="生成成功" :hidden="hiddenModal" @cancel="modalCancel">
+    <img mode="widthFix" :src="modalImgUrl" alt="" @click="previewGif">
+    <div>
+      <p class="guide-title">GIF保存指引：</p>
+      <p>1、点击上方图片进入预览模式</p>
+      <p>2、进入预览模式后长按图片进行保存</p>
+    </div>
   </modal>
 </div>
 </template>
@@ -73,8 +78,10 @@ export default {
     modalCancel: function () {
       this.hiddenModal = true
     },
-    modalConfirm: function () {
-
+    previewGif: function () {
+      wx.previewImage({
+        urls: [ this.modalImgUrl ]
+      })
     }
   }
 }
@@ -103,5 +110,9 @@ export default {
 
 .confirm-btn {
   width: 60%;
+}
+
+.guide-title{
+  font-weight: bold;
 }
 </style>
