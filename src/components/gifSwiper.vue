@@ -1,11 +1,11 @@
 <template>
   <div class="main">
-    <swiper :autoplay="true"  class="swiper-main" :previous-margin="'60rpx'" :next-margin="'60rpx'" :circular="true" @change="swiperChange">
-      <div v-for="(img, index) in imgUrls" :key="img">
+    <swiper :autoplay="true" class="swiper-main" :previous-margin="'60rpx'" :next-margin="'60rpx'" :circular="true" @change="swiperChange">
+      <div v-for="(img, index) in imgArr" :key="img" @click="goDetail(index)">
         <swiper-item>
           <div class="hot-main" :style="{ transform: index!==bannerIndex?'scale(0.9, 0.9)':'scale(1,1)'}">
-            <img mode="aspectFill" :src="img" alt="" class="swiper-image">
-            <div class="hot-desc">罚款来得及看见京东方来看风刀</div>
+            <img mode="aspectFill" :src="img.thumbnail" alt="" class="swiper-image">
+            <div class="hot-desc">{{img.name}}</div>
           </div>
         </swiper-item>
       </div>
@@ -14,9 +14,10 @@
 </template>
 
 <script>
+import store from '@/store/store'
 export default {
   props: {
-    imgUrls: Array
+    imgArr: Array
   },
   data () {
     return {
@@ -26,6 +27,11 @@ export default {
   methods: {
     swiperChange: function (e) {
       this.bannerIndex = e.mp.detail.current
+    },
+    goDetail: function (index) {
+      store.commit('setNowCategory', this.imgArr[index])
+      const url = '../make/main'
+      wx.navigateTo({ url })
     }
   }
 }
