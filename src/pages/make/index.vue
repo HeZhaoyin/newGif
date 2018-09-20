@@ -5,9 +5,8 @@
   </div>
   <input class="content-input" v-for="(content, index) in contentArr" :key="index" :placeholder="content" placeholder-class="content-input-placeholder" type="text" name="" v-model="materialArr[index]">
   <button type="primary" class="confirm-btn" @click="makeGif">生成</button>
-
   <modal confirm-text="保存" cancel-text="取消" title="退出应用" :hidden="hiddenModal" @confirm="modalConfirm" @cancel="modalCancel">
-    <img :src="modalImgUrl" alt="">
+    <img mode="widthFix" :src="modalImgUrl" alt="">
   </modal>
 </div>
 </template>
@@ -33,6 +32,14 @@ export default {
   },
   methods: {
     makeGif: function () {
+      let data = []
+      for (let i = 0; i < this.contentArr.length; i++) {
+        if (this.materialArr[i]) {
+          data[i] = this.materialArr[i]
+        } else {
+          data[i] = this.contentArr[i]
+        }
+      }
       wx.request({
         url: 'https://www.hezhaoyin.com/gif/make',
         method: 'POST',
@@ -40,7 +47,7 @@ export default {
           from: 1,
           tplid: this.category.tplid,
           quality: 1,
-          content: this.materialArr.join('##$@?$?@$##')
+          content: data.join('##$@?$?@$##')
         },
         header: {
           'content-type': 'application/x-www-form-urlencoded'
@@ -48,11 +55,6 @@ export default {
         success: (res) => {
           wx.hideLoading()
           if (res.data.m === 0) {
-            console.log(res)
-            // wx.previewImage({
-            //   urls: [res.data.d.gifurl]
-            // })
-            console.log(res.data.d.gifurl)
             this.modalImgUrl = res.data.d.gifurl
             this.hiddenModal = false
           } else {
