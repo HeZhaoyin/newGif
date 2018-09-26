@@ -47,6 +47,7 @@ export default {
       }
       wx.request({
         url: 'https://www.hezhaoyin.com/gif/make',
+        // url: 'https://localhost/gif/make',
         method: 'POST',
         data: {
           from: 1,

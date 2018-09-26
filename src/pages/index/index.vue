@@ -72,13 +72,10 @@ export default {
   },
 
   methods: {
-    bindViewTap () {
-      const url = '../logs/main'
-      wx.navigateTo({ url })
-    },
     getData () {
       wx.request({
         url: 'https://www.hezhaoyin.com/gif/category',
+        // url: 'https://localhost/gif/category',
         method: 'GET',
         success: (res) => {
           this.categoryList = res.data.d

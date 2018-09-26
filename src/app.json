@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/index/main",
-    "pages/make/main"
+    "pages/make/main",
+    "pages/about/main",
+    "pages/suggestion/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -21,9 +23,9 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/index/main",
-        "iconPath": "static/images/icon/home.png",
-        "selectedIconPath": "static/images/icon/home_selected.png",
+        "pagePath": "pages/about/main",
+        "iconPath": "static/images/icon/about.png",
+        "selectedIconPath": "static/images/icon/about_selected.png",
         "text": "关于"
       }
     ]
