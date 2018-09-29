@@ -6,7 +6,7 @@
   <input class="content-input" v-for="(content, index) in contentArr" :key="index" :placeholder="content" placeholder-class="content-input-placeholder" type="text" name="" v-model="materialArr[index]">
   <button type="primary" class="confirm-btn" @click="makeGif">生成</button>
   <modal cancel-text="取消" title="生成成功" :hidden="hiddenModal" @cancel="modalCancel">
-    <img mode="widthFix" :src="modalImgUrl" alt="" @click="previewGif">
+    <img mode="widthFix" :src="modalImgUrl" alt="" @click="previewGif" class="success-gif">
     <div>
       <p class="guide-title">GIF保存指引：</p>
       <p>1、点击上方图片进入预览模式</p>
@@ -115,5 +115,11 @@ export default {
 
 .guide-title{
   font-weight: bold;
+}
+
+.success-gif{
+  width: 100%;
+  display: block;
+  margin: 0 auto;
 }
 </style>
