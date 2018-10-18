@@ -21,11 +21,6 @@ export default {
 </script>
 
 <style>
-/* .about-content{
-  font-size: 28rpx;
-  margin: 0 50rpx;
-} */
-
 .go-btn{
   width: 80%;
   margin: 50rpx auto;
